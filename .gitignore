@@ -1,0 +1,67 @@
+# ============================================================
+# .gitignore — Plant Disease Detection
+# ============================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+.Python
+env/
+venv/
+.venv/
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# --- Data (large files, never commit to git) ---
+data/raw/
+data/processed/
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# --- Model checkpoints (use DVC or HuggingFace Hub instead) ---
+checkpoints/*.pth
+checkpoints/*.onnx
+checkpoints/*.tflite
+
+# --- Logs ---
+logs/
+*.log
+runs/
+wandb/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb~
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Env ---
+.env
+.env.local
+*.env
+
+# --- Reports (keep code, ignore binary outputs) ---
+reports/figures/*.png
+reports/figures/*.pdf
+reports/*.pdf
+
+# --- Docker ---
+*.pid
+
+# --- OS ---
+*.DS_Store
+desktop.ini

@@ -1,0 +1,124 @@
+# ============================================================
+# master config — plant_disease_detection
+# All hyperparameters and paths live here.
+# Override any value via CLI: python train.py cfg.training.lr=1e-4
+# ============================================================
+
+project:
+  name: plant_disease_detection
+  seed: 42
+  device: cuda          # cuda | cpu | mps
+  mixed_precision: true # AMP (automatic mixed precision)
+
+paths:
+  data_root: data/raw/PlantVillage          # unzipped PlantVillage folder
+  plantdoc_root: data/raw/PlantDoc          # unzipped PlantDoc folder
+  splits_dir: data/splits
+  checkpoints_dir: checkpoints
+  logs_dir: logs
+  reports_dir: reports
+  knowledge_base: app/backend/knowledge_base.json
+
+data:
+  image_size: 224           # training resolution (also try 288 in ablation)
+  image_size_ablation: 288
+  num_workers: 4
+  pin_memory: true
+  val_split: 0.15           # fraction of labelled data for validation
+  test_split: 0.15          # fraction of labelled data for test
+  # PlantVillage has 38 classes; set after EDA
+  num_classes: 38
+
+augmentation:
+  train:
+    random_resized_crop: true
+    crop_scale: [0.7, 1.0]
+    horizontal_flip: true
+    vertical_flip: false
+    rotation_degrees: 30
+    color_jitter:
+      brightness: 0.3
+      contrast: 0.3
+      saturation: 0.3
+      hue: 0.1
+    blur_prob: 0.2
+    coarse_dropout: true
+    cutmix_prob: 0.3          # CutMix applied in dataloader collate
+    background_randomize: true  # swap plain backgrounds to reduce bias
+    normalize_mean: [0.485, 0.456, 0.406]   # ImageNet stats
+    normalize_std:  [0.229, 0.224, 0.225]
+  val:
+    normalize_mean: [0.485, 0.456, 0.406]
+    normalize_std:  [0.229, 0.224, 0.225]
+
+training:
+  # Stage 1 — frozen backbone, train head only
+  stage1:
+    epochs: 10
+    lr: 1e-3
+    batch_size: 64
+    weight_decay: 1e-4
+    warmup_epochs: 2
+    label_smoothing: 0.1
+
+  # Stage 2 — unfreeze all, discriminative LRs
+  stage2:
+    epochs: 30
+    lr: 1e-4              # head LR
+    backbone_lr_factor: 0.1   # early layer LR = lr * factor
+    batch_size: 32
+    weight_decay: 1e-4
+    warmup_epochs: 3
+    label_smoothing: 0.1
+    cosine_t_max: 30
+
+  early_stopping:
+    patience: 7
+    monitor: val_macro_f1
+    mode: max
+
+  class_weighting: true       # use inverse-frequency class weights
+  balanced_sampler: false     # alternative: use this instead of weighted loss
+
+models:
+  baseline_cnn:
+    name: baseline_cnn
+    description: "Small CNN trained from scratch"
+  resnet50_frozen:
+    name: resnet50
+    timm_pretrained: true
+    freeze_backbone: true
+  efficientnetv2_s:
+    name: tf_efficientnetv2_s
+    timm_pretrained: true
+    drop_rate: 0.2
+    drop_path_rate: 0.2
+  convnext_tiny:
+    name: convnext_tiny
+    timm_pretrained: true
+    drop_path_rate: 0.1
+  mobilenetv3_large:
+    name: mobilenetv3_large_100
+    timm_pretrained: true
+
+evaluation:
+  ood_threshold: 0.6          # max-softmax below this → "uncertain / not a leaf"
+  temperature_scaling: true
+  top_k: 3
+
+explainability:
+  method: gradcam_plusplus    # gradcam | gradcam_plusplus | eigencam
+  alpha: 0.5                  # overlay opacity
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  max_image_size_mb: 10
+  model_path: checkpoints/best_efficientnetv2_s.pth
+
+ablations:
+  seeds: [42, 123, 7]
+  image_sizes: [224, 288]
+  augmentation: [true, false]
+  backbone_frozen: [true, false]
+  class_weighting: [true, false]

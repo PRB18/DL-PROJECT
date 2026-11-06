@@ -1,0 +1,93 @@
+{
+  "disclaimer": "DISCLAIMER: This diagnostic tool is an AI-assisted preliminary screening system and does NOT replace professional agronomic consultation. Always consult a certified local agronomist or extension officer before purchasing or applying commercial fungicides or pesticides.",
+  "diseases": {
+    "Tomato___healthy": {
+      "crop": "Tomato",
+      "disease": "Healthy",
+      "symptoms": "Foliage exhibits vigorous deep green coloration with uniform texture and no necrotic lesions or chlorosis.",
+      "treatment": "Maintain balanced N-P-K fertilization, ensure drip irrigation at the base to avoid leaf dampness, and scout weekly for early pest vectors.",
+      "prevention": "Rotate crops every 2-3 seasons with non-solanaceous crops.",
+      "source": "FAO / University of Florida Agricultural Extension"
+    },
+    "Tomato___Early_blight": {
+      "crop": "Tomato",
+      "disease": "Early Blight (Alternaria solani)",
+      "symptoms": "Dark brown to black necrotic spots with concentric rings ('bullseye' target pattern) starting on older lower foliage.",
+      "treatment": "Apply copper-based fungicides (e.g. Copper Hydroxide) or Chlorothalonil / Mancozeb. Prune lower affected leaves to arrest upward spore splash.",
+      "prevention": "Ensure wide plant spacing for airflow, mulch around base to prevent soil splash, and avoid overhead sprinkler watering.",
+      "source": "Cornell University Cooperative Extension"
+    },
+    "Tomato___Late_blight": {
+      "crop": "Tomato",
+      "disease": "Late Blight (Phytophthora infestans)",
+      "symptoms": "Rapidly expanding water-soaked greasy gray-green lesions with white fungal-like sporulation on the leaf underside under high humidity.",
+      "treatment": "Aggressively remove and bag infected foliage immediately. Treat unaffected rows with systemic phosphonates or metalaxyl/mancozeb fungicides.",
+      "prevention": "Plant certified disease-free transplants and blight-resistant cultivars. Avoid planting near potato crops.",
+      "source": "USDA Agricultural Research Service"
+    },
+    "Tomato___Bacterial_spot": {
+      "crop": "Tomato",
+      "disease": "Bacterial Spot (Xanthomonas spp.)",
+      "symptoms": "Small circular greasy water-soaked spots that darken with yellow halos; severe infection causes leaf drop and sunburn on fruit.",
+      "treatment": "Apply fixed copper bactericides combined with mancozeb; spray early in the morning so foliage dries quickly.",
+      "prevention": "Use certified pathogen-free seeds; treat seeds in hot water (50°C for 25 min) prior to sowing.",
+      "source": "University of California IPM Guidelines"
+    },
+    "Potato___Early_blight": {
+      "crop": "Potato",
+      "disease": "Early Blight (Alternaria solani)",
+      "symptoms": "Concentric dark brown angular lesions bounded by leaf veins; premature senescence of potato foliage.",
+      "treatment": "Foliar applications of azoxystrobin, chlorothalonil, or difenoconazole as soon as lower leaves exhibit lesions.",
+      "prevention": "Maintain adequate nitrogen and potassium levels; eliminate wild nightshade weed hosts.",
+      "source": "Purdue University Extension"
+    },
+    "Potato___Late_blight": {
+      "crop": "Potato",
+      "disease": "Late Blight (Phytophthora infestans)",
+      "symptoms": "Dark blotches on leaf tips and margins; devastating rapid blighting during cool damp periods.",
+      "treatment": "Systemic fungicides (e.g. Cymoxanil, Propamocarb); prompt rogueing and destruction of infected tuber haulms.",
+      "prevention": "Strictly use certified seed tubers; destroy cull piles.",
+      "source": "International Potato Center (CIP)"
+    },
+    "Pepper__bell___Bacterial_spot": {
+      "crop": "Bell Pepper",
+      "disease": "Bacterial Spot (Xanthomonas campestris)",
+      "symptoms": "Water-soaked dark lesions on leaves, leading to severe defoliation and compromised yield.",
+      "treatment": "Copper-mancozeb tank mix sprays; streptomycin in seedbeds where legally permitted.",
+      "prevention": "Use resistant seed hybrids (e.g. races 1-5 resistant varieties).",
+      "source": "Texas A&M AgriLife Extension"
+    },
+    "Pepper__bell___healthy": {
+      "crop": "Bell Pepper",
+      "disease": "Healthy",
+      "symptoms": "Uniform glossy green foliage without spotting or wilting.",
+      "treatment": "Standard nutrient management and drip irrigation.",
+      "prevention": "Regular field scouting.",
+      "source": "FAO Guidelines"
+    },
+    "Corn_(maize)___Common_rust_": {
+      "crop": "Corn (Maize)",
+      "disease": "Common Rust (Puccinia sorghi)",
+      "symptoms": "Cinnamon-brown powdery pustules on both upper and lower leaf surfaces.",
+      "treatment": "Foliar strobilurin or triazole fungicides if rust appears before tasseling on susceptible hybrids.",
+      "prevention": "Plant rust-tolerant hybrid seed.",
+      "source": "Iowa State University Extension"
+    },
+    "Apple___Apple_scab": {
+      "crop": "Apple",
+      "disease": "Apple Scab (Venturia inaequalis)",
+      "symptoms": "Olive-green to velvety dark brown lesions on leaves and fruit, causing leaf distortion and premature leaf drop.",
+      "treatment": "Apply protective fungicides (Captan, Mancozeb) or post-infection sterol inhibitors (Myclobutanil).",
+      "prevention": "Shred fallen leaves or apply urea in late autumn to accelerate leaf decomposition and destroy overwintering ascospores.",
+      "source": "Penn State Extension"
+    }
+  },
+  "default": {
+    "crop": "Unknown",
+    "disease": "Diagnosis Recorded",
+    "symptoms": "Foliar pathology identified by deep learning classifier.",
+    "treatment": "Isolate affected specimens, ensure proper drainage, and collect physical samples for testing at an agricultural extension center.",
+    "prevention": "Practice strict crop rotation, sanitize pruning shears with 70% alcohol, and maintain weed control.",
+    "source": "Agronomic Field Manual"
+  }
+}
